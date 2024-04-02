@@ -1,5 +1,5 @@
 #### Preamble ####
-# Purpose: Downloads and saves the data from from the Womens´s Pockets are Inferior paper by Jan Diehm & Amber Thomas. 
+# Purpose: Download and save the data from from the Womens´s Pockets are Inferior paper by Jan Diehm & Amber Thomas. 
 # Author: Hari Lee Robledo
 # Date: April 2 2023 
 # Contact: hari.leerobledo@mail.utoronto.ca 
@@ -15,19 +15,22 @@ library(readr)
 
 ``` {r}
 #### Download data ####
-
-# Corrected URL to the raw CSV file
-url <- "https://raw.githubusercontent.com/the-pudding/data/725dc18a59a055891dee25e85652f416b0065bdd/pockets/measurements.csv"
-
-# Read the CSV file
-raw_pockets_data <- read_csv(url)
+raw_pockets_data <-
+  read_csv(
+    "https://raw.githubusercontent.com/the-pudding/data/725dc18a59a055891dee25e85652f416b0065bdd/pockets/measurements.csv",
+    show_col_types = FALSE,
+    skip = 0
+  )
 
 ```
+
+
 ```{r}
 #### Save data ####
 write_csv(
   x = raw_pockets_data,
-  file = "data/raw_data/raw_pockets_data.csv"
+  file = here::here("data/raw_data/raw_pockets_data.csv")
 )
 ```
+
 

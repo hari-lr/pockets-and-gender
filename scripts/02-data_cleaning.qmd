@@ -1,0 +1,17 @@
+#### Preamble ####
+# Purpose: Clean the data from from the Womens´s Pockets are Inferior paper by Jan Diehm & Amber Thomas.  
+# Author: Hari Lee Robledo
+# Date: April 2 2023 
+# Contact: hari.leerobledo@mail.utoronto.ca 
+# License: MIT
+# Pre-requisites: 01-download_data.qmd
+
+
+
+#### Workspace setup ####
+
+
+#### Clean data ####
+
+
+#### Save data ####
