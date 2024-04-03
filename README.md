@@ -2,7 +2,7 @@
 
 ## Overview
 
-This repo contains a data analysis project associated with Telling Stories with Data. This paper aims to reproduce the findings from Women´s Pocketcs are Inferior by Jan Diehm & Amber Thomas. And explore if gender disparities extend to pricing. 
+This repo contains a data analysis project associated with Telling Stories with Data. This paper aims to reproduce the findings from Women´s Pockets are Inferior by Jan Diehm & Amber Thomas. And explore if gender disparities extend to pricing. 
 
 
 ## File Structure
