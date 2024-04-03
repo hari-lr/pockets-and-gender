@@ -5,14 +5,10 @@ author: Hari Lee Robledo
 thanks: "Code and data are available at: https://github.com/hari-lr/pockets-and-gender"
 date: today
 date-format: long
-abstract: "An introductory sentence that is comprehensible to a wide audience.
-A more detailed background sentence that is relevant to likely readers.
-A sentence that states the general problem.
-Sentences that summarize and then explain the main results.
-A sentence about general context.
-And finally, a sentence about the broader perspective"
+abstract: "Fashion has long reflected and reinforced gender inequalities, with women's clothing often lacking functional pockets found in men's garments. A 2018 study by Jan Diehm & Amber Thomas on The Pudding revealed this discrepancy, highlighting inferior pocket functionality in women's jeans. This paper aims to reproduce these findings and explore if gender disparities extend to pricing. Using the same data, we analyze the correlation between prices of men's and women's jeans. Results suggest that women's jeans not only have smaller pockets but also tend to be more expensive. This study sheds light on gender inequalities in everyday products and their broader implications. [UPDATE]"
 format: pdf
 number-sections: true
+toc: true
 bibliography: references.bib
 ---
 
@@ -26,26 +22,34 @@ library(tidyverse)
 
 
 # Introduction
-3 paragraphs
+
+Throughout history, women have faced numerous restrictions and limitations, often ingrained within societal norms and cultural practices. Among these limitations, the realm of fashion has served as both a reflection and an enforcer of gender-based inequalities. From ancient times to the modern era, clothing has been a means of expressing social status, cultural identity, and gender roles. However, while men's garments historically incorporated functional pockets, allowing them to carry essentials such as money, keys, and tools, women's clothing has often lacked this practical feature. Instead, women's garments have frequently been designed with form-fitting silhouettes, delicate fabrics, and ornamental details, prioritizing aesthetics over utility.
+
+[ADD RESEARCH AND HISTORICAL CONTEXT]
+
+In 2018, Jan Diehm & Amber Thomas published Womens´s Pockets are Inferior on The Pudding, a data-centric digital publication. In this paper, they "measured pockets in both men´s and women’s pants in 20 of the US’ most popular blue jeans brands" [CITE]. And  "programmatically determined whether various everyday items could fit in an otherwise empty pocket in jeans that aren’t being worn" [CITE]. Jan Diehm & Amber Thomas concluded that women´s pockets were less functional than men´s. 
+
+Using the data from the previously described article, this paper will graphically reproduce the results and examine whether there is a correlation between the prices of men's jeans and women's jeans. This will help better understand if gender inequality is only reflected in the jean´s pockets or in pricing as well. The findings revealed that (SPECULATION) [women´s jeans do not only have the smaller and less functional pockets, but also tend to be more expensive] 
+
+This paper is structured into the following sections: Data, which explains the collection and cleaning process; Results, presenting trends and correlations found in the data; Discussion, comparing and evaluating the data; and Conclusion, summarizing the findings.
 
 
 
+# Data 
+The data utilized in this paper was retrieved from The Pudding GitHub Site Portal, specifically the data collected by by Jan Diehm and Amber Thomas  [CITE]. Data was collected, cleaned, and analyzed using the open-source statistical programming software R [@citeR]. This process involved various packages within R, including tidyverse [@tidyverse], `ggplot2` [@ggplot2], `dplyr` [@dplyr], `readxl` [@readxl], `tibble` [@tibble], `janitor` [@janitor], `KableExtra` [@kableExtra], `knitr` [@knitr], `ggbeeswarm` [@ggbeeswarm], and `ggrepel` [@ggrepel]. A comprehensive description of the data gathering and cleaning process is provided in the following subsections. [MAKE SURE ALL LIBRARIES ARE CITED]
 
+[snap of raw data]
 
-# Data {#sec-data}
+## CSV Dataset and cleaning
+Explain how the data was collected and measured
 
+## JSON Dataset and cleaning
 
 # Model
-
+[TBD]
 
 ## Model set-up
-
-
-
-
-### Model justification
-
-
+## Model justification
 
 # Results
 
@@ -53,14 +57,10 @@ library(tidyverse)
 # Discussion
 
 ## First discussion point {#sec-first-point}
-
-
-
 ## Second discussion point
-
 ## Third discussion point
 
-## Weaknesses and next steps
+##Weaknesses and next steps
 
 \newpage
 
@@ -68,7 +68,7 @@ library(tidyverse)
 
 # Appendix {-}
 
-# Additional data details
+
 
 \newpage
 

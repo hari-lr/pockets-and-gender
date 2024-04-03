@@ -8,10 +8,89 @@
 
 
 
+```{r}
 #### Workspace setup ####
+library(tidyverse)
+library(jsonlite)
+library(readr)
+library(janitor)
+library(dplyr)
+
+```
 
 
+
+```{r}
 #### Clean data ####
 
+# Code referenced from:https://tellingstorieswithdata.com/02-drinking_from_a_fire_hose.html
 
-#### Save data ####
+raw_pockets_data<-
+  read_csv(
+    file = here::here("data/raw_data/raw_pockets_data.csv"),
+    show_col_types = FALSE
+  )
+
+# Change the name of the raw data into the clean data
+cleaned_pockets_data <-
+  clean_names(raw_pockets_data)
+
+# Select the rows of interest
+cleaned_pockets_data <-
+  cleaned_pockets_data |>
+  select(
+    brand,
+    style,
+    men_women,
+    price
+  ) 
+
+cleaned_pockets_data
+
+
+
+
+# Clean json file (pocket area measurments)
+json_file <- here::here("data/raw_data/raw_data.json")
+
+# Read the JSON data from the file
+json_data <- fromJSON(json_file)
+
+# Change the name of the raw data into the clean data
+cleaned_json_data <-
+  clean_names(json_data)
+
+# Select the rows of interest
+cleaned_json_data <-
+  cleaned_json_data |>
+  select(
+    updated_style,
+    group,
+    price_group,
+    pocket_area
+  ) 
+
+cleaned_json_data 
+```
+
+```{r}
+#### Save cleaned data ####
+# Code referenced from:https://tellingstorieswithdata.com/02-drinking_from_a_fire_hose.html
+
+# save cleaned pockets data 
+write_csv(
+  x = cleaned_pockets_data,
+  file = here::here("data/analysis_data/cleaned_pockets_data.csv")
+)
+
+# save json cleaned data 
+
+# Change from json format to csv
+csv_file <- here::here("data/analysis_data/cleaned_json_data.csv")
+
+# Write the cleaned data frame to a CSV file
+write_csv(cleaned_json_data, csv_file)
+
+
+```
+

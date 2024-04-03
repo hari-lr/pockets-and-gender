@@ -1,0 +1,81 @@
+brand,style,men_women,price
+Arizona,skinny,women,42
+Arizona,straight,women,42
+Ralph Lauren,skinny,women,89.5
+Ralph Lauren,straight,women,89.5
+Uniqlo,skinny,women,39.9
+Uniqlo,straight,women,39.9
+Calvin Klein,skinny,women,79.5
+Calvin Klein,straight,women,69.5
+Lucky,skinny,women,99
+Lucky,straight,women,79.5
+Levi's,skinny,women,54.5
+Levi's,straight,women,54.5
+Lee,skinny,women,19.94
+Lee,straight,women,19.94
+7 for All Mankind,skinny,women,199
+7 for All Mankind,straight,women,159
+True Religion,skinny,women,179
+True Religion,straight,women,249
+Guess,skinny,women,98
+Guess,straight,women,89
+Tommy Hilfiger,skinny,women,69.5
+Tommy Hilfiger,straight,women,69.5
+Express,skinny,women,79.9
+Express,straight,women,79.9
+H&M,straight,women,49.99
+H&M,skinny,women,9.99
+Old Navy,boot-cut,women,29.99
+Old Navy,skinny,women,29.99
+J. Crew,straight,women,125
+J. Crew,skinny,women,110
+Gap,boot-cut,women,69.95
+Gap,skinny,women,69.95
+American Eagle,skinny,women,39.95
+American Eagle,boot-cut,women,39.95
+Abercrombie,skinny,women,88
+Abercrombie,straight,women,78
+Wrangler,skinny,women,99
+Wrangler,straight,women,99
+Arizona,skinny,men,50
+Arizona,boot-cut,men,50
+Ralph Lauren,slim,men,89.5
+Ralph Lauren,straight,men,89.5
+Guess,skinny,men,98
+Guess,straight,men,98
+Calvin Klein,skinny,men,89.5
+Calvin Klein,straight,men,69.5
+Levi's,skinny,men,69.5
+Levi's,straight,men,59.5
+Uniqlo,skinny,men,49.9
+Uniqlo,regular,men,49.9
+Express,skinny,men,88
+Express,boot-cut,men,79.9
+Lucky,slim,men,99
+Lucky,straight,men,129
+7 for all Mankind,skinny,men,209
+7 for all Mankind,straight,men,179
+True Religion,slim,men,159
+True Religion,straight,men,179
+J. Crew,skinny,men,98
+J. Crew,straight,men,98
+Old Navy,skinny,men,39.99
+Old Navy,boot-cut,men,39.99
+Gap,boot-cut,men,59.95
+Gap,skinny,men,69.95
+H&M,skinny,men,39.99
+H&M,straight,men,49.99
+American Eagle,skinny,men,49.95
+American Eagle,straight,men,49.95
+Abercrombie,straight,men,78
+Abercrombie,slim,men,78
+Tommy Hilfiger,slim,men,59.5
+Tommy Hilfiger,boot-cut,men,59.5
+Lee,slim,men,48
+Lee,straight,men,48
+Wrangler,slim,men,58
+Wrangler,boot-cut,men,48
+Buckle Black,boot-cut,women,89.95
+Buckle Black,skinny,women,92.95
+Buckle Black,boot-cut,men,94.95
+Buckle Black,slim,men,94.95
