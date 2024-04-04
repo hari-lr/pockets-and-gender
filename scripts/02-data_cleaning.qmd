@@ -81,10 +81,10 @@ write_csv(
 # save json cleaned data (pocket area measurements)
 
 # Change from json format to csv
-csv_file <- here::here("data/analysis_data/cleaned_json_data.csv")
+csv_file <- here::here("data/analysis_data/cleaned_pocket_area_data.csv")
 
 # Write the cleaned data frame to a CSV file
-write_csv(cleaned_json_data, csv_file)
+write_csv(cleaned_pocket_area_data, csv_file)
 
 
 ```
