@@ -5,7 +5,7 @@ author: Hari Lee Robledo
 thanks: "Code and data are available at: https://github.com/hari-lr/pockets-and-gender"
 date: today
 date-format: long
-abstract: "Fashion has long reflected and reinforced gender inequalities, with women's clothing often lacking functional pockets found in men's garments. A 2018 study by Jan Diehm & Amber Thomas on The Pudding revealed this discrepancy, highlighting inferior pocket functionality in women's jeans. This paper aims to reproduce these findings and explore if gender disparities extend to pricing. Using the same data, we analyze the correlation between prices of men's and women's jeans. Results suggest that women's jeans not only have smaller pockets but also tend to be more expensive. This study sheds light on gender inequalities in everyday products and their broader implications. [UPDATE]"
+abstract: "Fashion has long reflected and reinforced gender inequalities, with women's clothing often lacking functional pockets found in men's garments. A 2018 study by Jan Diehm & Amber Thomas on The Pudding revealed this discrepancy, highlighting inferior pocket functionality in women's jeans. This paper aims to reproduce these findings and explore if gender disparities extend to pricing. Using the same data, we analyze the correlation between prices of men's and women's jeans. Results suggest that women's jeans not only have smaller pockets but also tend to be more expensive. This study sheds light on gender inequalities in everyday products and their broader implications. [UPDATE according to findings]"
 format: pdf
 number-sections: true
 toc: true
