@@ -4,9 +4,7 @@
 # Date: April 2 2023 
 # Contact: hari.leerobledo@mail.utoronto.ca 
 # License: MIT
-# Pre-requisites: 01-download_data.qmd
-
-
+# Pre-requisites: 01-download_data.R
 
 ```{r}
 #### Workspace setup ####
@@ -17,8 +15,6 @@ library(janitor)
 library(dplyr)
 
 ```
-
-
 
 ```{r}
 #### Clean data ####
@@ -47,22 +43,21 @@ cleaned_pockets_data <-
 
 cleaned_pockets_data
 
+# Code referenced from: chat.openai.com 
 
-
-
-# Clean json file (pocket area measurments)
-json_file <- here::here("data/raw_data/raw_data.json")
+# Clean json file (pocket area measurements)
+json_file <- here::here("data/raw_data/pocket_area_data.json")
 
 # Read the JSON data from the file
-json_data <- fromJSON(json_file)
+pocket_area_data <- fromJSON(json_file)
 
 # Change the name of the raw data into the clean data
-cleaned_json_data <-
-  clean_names(json_data)
+cleaned_pocket_area_data <-
+  clean_names(pocket_area_data)
 
 # Select the rows of interest
-cleaned_json_data <-
-  cleaned_json_data |>
+cleaned_pocket_area_data <-
+  cleaned_pocket_area_data |>
   select(
     updated_style,
     group,
@@ -70,7 +65,7 @@ cleaned_json_data <-
     pocket_area
   ) 
 
-cleaned_json_data 
+cleaned_pocket_area_data
 ```
 
 ```{r}
@@ -83,7 +78,7 @@ write_csv(
   file = here::here("data/analysis_data/cleaned_pockets_data.csv")
 )
 
-# save json cleaned data 
+# save json cleaned data (pocket area measurements)
 
 # Change from json format to csv
 csv_file <- here::here("data/analysis_data/cleaned_json_data.csv")

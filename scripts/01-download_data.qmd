@@ -40,16 +40,16 @@ write_csv(
 github_url <- "https://raw.githubusercontent.com/the-pudding/data/master/pockets/measurementRectangles.json"
 
 # Read the JSON data from GitHub into R
-json_data <- fromJSON(github_url)
+pocket_area_data <- fromJSON(github_url)
 ```
 
 ```{r}
 #### Save measurements json data ####
 # Code referenced from: chat.openai.com
-json_string <- toJSON(json_data, pretty = TRUE)
+json_string <- toJSON(pocket_area_data, pretty = TRUE)
 
 # Specify the file path
-file_path <- here::here("data/raw_data/raw_data.json")
+file_path <- here::here("data/raw_data/pocket_area_data.json")
 
 # Write the JSON data to the file
 writeLines(json_string, file_path)
