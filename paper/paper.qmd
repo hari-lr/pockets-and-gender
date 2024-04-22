@@ -55,10 +55,6 @@ This paper is structured into the following sections: Data, which explains the c
 # Data 
 The data utilized in this paper was retrieved from The Pudding GitHub Site Portal, specifically the data collected by by Jan Diehm and Amber Thomas  [CITE]. Data was collected, cleaned, and analyzed using the open-source statistical programming software R [@citeR]. This process involved various packages within R, including tidyverse [@tidyverse], `ggplot2` [@ggplot2], `dplyr` [@dplyr], `readxl` [@readxl], `tibble` [@tibble], `janitor` [@janitor], `KableExtra` [@kableExtra], `knitr` [@knitr], `ggbeeswarm` [@ggbeeswarm], and `ggrepel` [@ggrepel]. A comprehensive description of the data gathering and cleaning process is provided in the following subsections. [MAKE SURE ALL LIBRARIES ARE CITED]
 
-[snap of raw data]
-
-
-
 ## CSV Dataset and cleaning
 Explain how the data was collected and measured. 
 
@@ -73,7 +69,7 @@ Explain how the data was collected and measured.
 
 head (cleaned_pockets_data, 5) |>
   kable(
-    col.names = c("brand","style","men_women","price"),
+    col.names = c("brand","men_women","price"),
   booktabs = TRUE
   )
 ```
@@ -98,6 +94,7 @@ head (cleaned_area_data, 5) |>
 
 
 # Results
+
 
 
 # Discussion
