@@ -51,21 +51,21 @@ json_file <- here::here("data/raw_data/pocket_area_data.json")
 pocket_area_data <- fromJSON(json_file)
 
 # Change the name of the raw data into the clean data
-cleaned_pocket_area_data <-
+cleaned_area_data <-
   clean_names(pocket_area_data)
 
 # Select the rows of interest
-cleaned_pocket_area_data <-
-  cleaned_pocket_area_data |>
+cleaned_area_data <-
+  cleaned_area_data |>
   select(
     brand,
     style,
-    menWomen,
+    men_women,
     pocket_area,
     price,
   ) 
 
-cleaned_pocket_area_data
+cleaned_area_data
 ```
 
 ```{r}
@@ -81,9 +81,9 @@ write_csv(
 # save json cleaned data (pocket area measurements)
 
 # Change from json format to csv
-csv_file <- here::here("data/analysis_data/cleaned_pocket_area_data.csv")
+csv_file <- here::here("data/analysis_data/cleaned_area_data.csv")
 
 # Write the cleaned data frame to a CSV file
-write_csv(cleaned_pocket_area_data, csv_file)
+write_csv(cleaned_area_data, csv_file)
 ```
 
