@@ -39,7 +39,6 @@ writeLines(json_string, file_path)
 df <- as.data.frame(pocket_area_data)
 
 # Save data frame as CSV
-write.csv(df, "pocket_area_data.csv", row.names = FALSE)
-
-
+write.csv(df, "data/raw_data/pocket_area_data.csv", row.names = FALSE)
 ```
+
