@@ -58,10 +58,11 @@ cleaned_pocket_area_data <-
 cleaned_pocket_area_data <-
   cleaned_pocket_area_data |>
   select(
-    updated_style,
-    group,
-    price_group,
-    pocket_area
+    brand,
+    style,
+    menWomen,
+    pocket_area,
+    price,
   ) 
 
 cleaned_pocket_area_data

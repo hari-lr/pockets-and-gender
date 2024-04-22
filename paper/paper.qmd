@@ -18,6 +18,23 @@ bibliography: references.bib
 #| message: false
 
 library(tidyverse)
+library(tibble)
+library(ggplot2)
+library(dplyr)
+library(janitor)
+library(kableExtra)
+
+## read in cleaned data 
+cleaned_pockets_data = read_csv(
+  file = here::here("data/analysis_data/cleaned_pockets_data.csv"),
+  show_col_types = FALSE
+)
+
+## read in cleaned data 
+cleaned_pocket_area_data = read_csv(
+  file = here::here("data/analysis_data/cleaned_pocket_area_data.csv"),
+  show_col_types = FALSE
+)
 ```
 
 
@@ -40,16 +57,34 @@ The data utilized in this paper was retrieved from The Pudding GitHub Site Porta
 
 [snap of raw data]
 
+
+
 ## CSV Dataset and cleaning
-Explain how the data was collected and measured
+Explain how the data was collected and measured. 
+
+```{r}
+#| warning: false
+#| message: false
+#| echo: false
+#| label: tbl-cleaned_pockets_data
+#| tbl-cap: Sample of Cleaned Pockets Data
+
+# Code referenced from: https://github.com/InessaDeAngelis/Toronto_Elections/blob/main/outputs/paper/toronto_elections_paper.qmd
+
+head (cleaned_pockets_data, 5) |>
+  kable(
+    col.names = c("brand","style","men_women","price"),
+  booktabs = TRUE
+  )
+```
+
+
+
+
 
 ## JSON Dataset and cleaning
 
-# Model
-[TBD]
 
-## Model set-up
-## Model justification
 
 # Results
 
