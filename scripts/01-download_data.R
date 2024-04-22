@@ -33,4 +33,13 @@ file_path <- here::here("data/raw_data/pocket_area_data.json")
 
 # Write the JSON data to the file
 writeLines(json_string, file_path)
+
+
+# Convert JSON to data frame
+df <- as.data.frame(pocket_area_data)
+
+# Save data frame as CSV
+write.csv(df, "pocket_area_data.csv", row.names = FALSE)
+
+
 ```
