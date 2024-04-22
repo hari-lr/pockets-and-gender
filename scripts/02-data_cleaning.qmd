@@ -35,7 +35,6 @@ cleaned_pockets_data <-
   cleaned_pockets_data |>
   select(
     brand,
-    style,
     men_women,
     price
   ) 
