@@ -31,8 +31,8 @@ cleaned_pockets_data = read_csv(
 )
 
 ## read in cleaned data 
-cleaned_pocket_area_data = read_csv(
-  file = here::here("data/analysis_data/cleaned_pocket_area_data.csv"),
+cleaned_area_data = read_csv(
+  file = here::here("data/analysis_data/cleaned_area_data.csv"),
   show_col_types = FALSE
 )
 ```
@@ -79,11 +79,22 @@ head (cleaned_pockets_data, 5) |>
 ```
 
 
-
-
-
 ## JSON Dataset and cleaning
+```{r}
+#| warning: false
+#| message: false
+#| echo: false
+#| label: tbl-cleaned_area_data
+#| tbl-cap: Sample of Cleaned Pocket Area Data
 
+# Code referenced from: https://github.com/InessaDeAngelis/Toronto_Elections/blob/main/outputs/paper/toronto_elections_paper.qmd
+
+head (cleaned_area_data, 5) |>
+  kable(
+    col.names = c("brand","style","men_women","pocket_area","price"),
+  booktabs = TRUE
+  )
+```
 
 
 # Results
