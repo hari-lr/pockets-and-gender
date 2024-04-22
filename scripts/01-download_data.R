@@ -15,25 +15,6 @@ library(jsonlite)
 ```
 
 ``` {r}
-#### Download measurements csv data ####
-raw_pockets_data <-
-  read_csv(
-    "https://raw.githubusercontent.com/the-pudding/data/725dc18a59a055891dee25e85652f416b0065bdd/pockets/measurements.csv",
-    show_col_types = FALSE,
-    skip = 0
-  )
-```
-
-
-```{r}
-#### Save measurements csv data ####
-write_csv(
-  x = raw_pockets_data,
-  file = here::here("data/raw_data/raw_pockets_data.csv")
-)
-```
-
-``` {r}
 #### Download measurements json data ####
 # Code referenced from:chat.openai.com 
 github_url <- "https://raw.githubusercontent.com/the-pudding/data/master/pockets/measurementRectangles.json"

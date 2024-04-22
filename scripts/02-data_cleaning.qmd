@@ -18,29 +18,6 @@ library(dplyr)
 ```{r}
 #### Clean data ####
 
-# Code referenced from:https://tellingstorieswithdata.com/02-drinking_from_a_fire_hose.html
-
-raw_pockets_data<-
-  read_csv(
-    file = here::here("data/raw_data/raw_pockets_data.csv"),
-    show_col_types = FALSE
-  )
-
-# Change the name of the raw data into the clean data
-cleaned_pockets_data <-
-  clean_names(raw_pockets_data)
-
-# Select the rows of interest
-cleaned_pockets_data <-
-  cleaned_pockets_data |>
-  select(
-    brand,
-    men_women,
-    price
-  ) 
-
-cleaned_pockets_data
-
 # Code referenced from: chat.openai.com 
 
 # Clean json file (pocket area measurements)
@@ -58,25 +35,18 @@ cleaned_area_data <-
   cleaned_area_data |>
   select(
     brand,
-    style,
     men_women,
-    pocket_area,
     price,
+    pocket_area,
   ) 
 
 cleaned_area_data
+
+
 ```
 
 ```{r}
 #### Save cleaned data ####
-# Code referenced from:https://tellingstorieswithdata.com/02-drinking_from_a_fire_hose.html
-
-# save cleaned pockets data 
-write_csv(
-  x = cleaned_pockets_data,
-  file = here::here("data/analysis_data/cleaned_pockets_data.csv")
-)
-
 # save json cleaned data (pocket area measurements)
 
 # Change from json format to csv

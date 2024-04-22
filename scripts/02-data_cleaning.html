@@ -138,169 +138,122 @@ The following objects are masked from 'package:stats':
 <div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Clean data ####</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Code referenced from:https://tellingstorieswithdata.com/02-drinking_from_a_fire_hose.html</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Code referenced from: chat.openai.com </span></span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>raw_pockets_data<span class="ot">&lt;-</span></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">read_csv</span>(</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">file =</span> here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"data/raw_data/raw_pockets_data.csv"</span>),</span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">show_col_types =</span> <span class="cn">FALSE</span></span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Clean json file (pocket area measurements)</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>json_file <span class="ot">&lt;-</span> here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"data/raw_data/pocket_area_data.json"</span>)</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Read the JSON data from the file</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>pocket_area_data <span class="ot">&lt;-</span> <span class="fu">fromJSON</span>(json_file)</span>
 <span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Change the name of the raw data into the clean data</span></span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>cleaned_pockets_data <span class="ot">&lt;-</span></span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">clean_names</span>(raw_pockets_data)</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>cleaned_area_data <span class="ot">&lt;-</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">clean_names</span>(pocket_area_data)</span>
 <span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Select the rows of interest</span></span>
-<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>cleaned_pockets_data <span class="ot">&lt;-</span></span>
-<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>  cleaned_pockets_data <span class="sc">|&gt;</span></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>cleaned_area_data <span class="ot">&lt;-</span></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>  cleaned_area_data <span class="sc">|&gt;</span></span>
 <span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(</span>
 <span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>    brand,</span>
 <span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>    men_women,</span>
-<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>    price</span>
-<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>  ) </span>
-<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>cleaned_pockets_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>    price,</span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>    pocket_area,</span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>  ) </span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>cleaned_area_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 80 × 3
-   brand        men_women price
-   &lt;chr&gt;        &lt;chr&gt;     &lt;dbl&gt;
- 1 Arizona      women      42  
- 2 Arizona      women      42  
- 3 Ralph Lauren women      89.5
- 4 Ralph Lauren women      89.5
- 5 Uniqlo       women      39.9
- 6 Uniqlo       women      39.9
- 7 Calvin Klein women      79.5
- 8 Calvin Klein women      69.5
- 9 Lucky        women      99  
-10 Lucky        women      79.5
-# ℹ 70 more rows</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Code referenced from: chat.openai.com </span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Clean json file (pocket area measurements)</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>json_file <span class="ot">&lt;-</span> here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"data/raw_data/pocket_area_data.json"</span>)</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Read the JSON data from the file</span></span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>pocket_area_data <span class="ot">&lt;-</span> <span class="fu">fromJSON</span>(json_file)</span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Change the name of the raw data into the clean data</span></span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>cleaned_area_data <span class="ot">&lt;-</span></span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">clean_names</span>(pocket_area_data)</span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Select the rows of interest</span></span>
-<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>cleaned_area_data <span class="ot">&lt;-</span></span>
-<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>  cleaned_area_data <span class="sc">|&gt;</span></span>
-<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(</span>
-<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>    brand,</span>
-<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>    style,</span>
-<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>    men_women,</span>
-<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>    pocket_area,</span>
-<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>    price,</span>
-<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>  ) </span>
-<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a>cleaned_area_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>               brand    style men_women pocket_area  price
-1  7 for All Mankind straight       men   11222.727 179.00
-2  7 for All Mankind   skinny       men   10841.943 209.00
-3        Abercrombie     slim       men   10624.652  78.00
-4        Abercrombie straight       men   10134.155  78.00
-5     American Eagle straight       men   10555.400  49.95
-6     American Eagle   skinny       men    8479.896  49.95
-7            Arizona   skinny       men   12667.656  50.00
-8            Arizona boot-cut       men   12751.060  50.00
-9       Buckle Black     slim       men   10399.362  94.95
-10      Buckle Black boot-cut       men   10826.676  94.95
-11      Calvin Klein   skinny       men    8934.371  89.50
-12      Calvin Klein straight       men   11826.103  69.50
-13           Express boot-cut       men    9377.645  79.90
-14           Express   skinny       men    9030.410  88.00
-15               Gap   skinny       men   10704.825  69.95
-16               Gap boot-cut       men   11022.040  59.95
-17             Guess straight       men   12609.901  98.00
-18             Guess   skinny       men    8996.149  98.00
-19               H&amp;M   skinny       men    8129.532  39.99
-20               H&amp;M straight       men    9892.568  49.99
-21           J. Crew   skinny       men   12461.641  98.00
-22           J. Crew straight       men    9299.982  98.00
-23               Lee straight       men   10532.730  48.00
-24               Lee     slim       men   13102.032  48.00
-25            Levi's   skinny       men   10431.413  69.50
-26            Levi's straight       men   11591.260  59.50
-27             Lucky     slim       men    9871.319  99.00
-28             Lucky straight       men   10957.032 129.00
-29          Old Navy   skinny       men   10511.379  39.99
-30          Old Navy boot-cut       men   12527.129  39.99
-31      Ralph Lauren straight       men   12792.598  89.50
-32      Ralph Lauren     slim       men   10857.715  89.50
-33    Tommy Hilfiger     slim       men   11446.106  59.50
-34    Tommy Hilfiger boot-cut       men   12599.101  59.50
-35     True Religion     slim       men   11203.137 159.00
-36     True Religion straight       men    9625.469 179.00
-37            Uniqlo   skinny       men   10783.892  49.90
-38            Uniqlo  regular       men   10452.411  49.90
-39          Wrangler     slim       men   13079.606  58.00
-40          Wrangler boot-cut       men    9407.091  48.00
-41 7 for All Mankind   skinny     women    5557.218 199.00
-42 7 for All Mankind straight     women    5811.112 159.00
-43       Abercrombie straight     women    8757.578  78.00
-44       Abercrombie   skinny     women    9688.483  88.00
-45    American Eagle boot-cut     women    6408.587  39.95
-46    American Eagle   skinny     women    7834.578  39.95
-47           Arizona straight     women    6510.059  42.00
-48           Arizona   skinny     women    6875.295  42.00
-49      Buckle Black boot-cut     women    6528.060  89.95
-50      Buckle Black   skinny     women    6470.628  92.95
-51      Calvin Klein   skinny     women    4702.028  79.50
-52      Calvin Klein straight     women    5626.324  69.50
-53           Express   skinny     women    6544.814  79.90
-54           Express straight     women    6496.120  79.90
-55               Gap boot-cut     women    4454.429  69.95
-56               Gap   skinny     women    4612.939  69.95
-57             Guess straight     women    4572.572  89.00
-58             Guess   skinny     women    4490.844  98.00
-59               H&amp;M straight     women    5557.331  49.99
-60               H&amp;M   skinny     women    7424.142   9.99
-61           J. Crew straight     women    6307.453 125.00
-62           J. Crew   skinny     women    4865.783 110.00
-63               Lee   skinny     women    6878.150  19.94
-64               Lee straight     women    6236.635  19.94
-65            Levi's straight     women    5955.678  54.50
-66            Levi's   skinny     women    5412.682  54.50
-67             Lucky   skinny     women    5151.472  99.00
-68             Lucky straight     women    7178.176  79.50
-69          Old Navy   skinny     women    5557.106  29.99
-70          Old Navy boot-cut     women    5002.489  29.99
-71      Ralph Lauren   skinny     women    5318.592  89.50
-72      Ralph Lauren straight     women    5318.592  89.50
-73    Tommy Hilfiger   skinny     women    5481.579  69.50
-74    Tommy Hilfiger straight     women    7059.797  69.50
-75     True Religion straight     women    5384.557 249.00
-76     True Religion   skinny     women    5387.754 179.00
-77            Uniqlo straight     women    6704.796  39.90
-78            Uniqlo   skinny     women    5253.816  39.90
-79          Wrangler   skinny     women    6110.318  99.00
-80          Wrangler straight     women    5936.541  99.00</code></pre>
+<pre><code>               brand men_women  price pocket_area
+1  7 for All Mankind       men 179.00   11222.727
+2  7 for All Mankind       men 209.00   10841.943
+3        Abercrombie       men  78.00   10624.652
+4        Abercrombie       men  78.00   10134.155
+5     American Eagle       men  49.95   10555.400
+6     American Eagle       men  49.95    8479.896
+7            Arizona       men  50.00   12667.656
+8            Arizona       men  50.00   12751.060
+9       Buckle Black       men  94.95   10399.362
+10      Buckle Black       men  94.95   10826.676
+11      Calvin Klein       men  89.50    8934.371
+12      Calvin Klein       men  69.50   11826.103
+13           Express       men  79.90    9377.645
+14           Express       men  88.00    9030.410
+15               Gap       men  69.95   10704.825
+16               Gap       men  59.95   11022.040
+17             Guess       men  98.00   12609.901
+18             Guess       men  98.00    8996.149
+19               H&amp;M       men  39.99    8129.532
+20               H&amp;M       men  49.99    9892.568
+21           J. Crew       men  98.00   12461.641
+22           J. Crew       men  98.00    9299.982
+23               Lee       men  48.00   10532.730
+24               Lee       men  48.00   13102.032
+25            Levi's       men  69.50   10431.413
+26            Levi's       men  59.50   11591.260
+27             Lucky       men  99.00    9871.319
+28             Lucky       men 129.00   10957.032
+29          Old Navy       men  39.99   10511.379
+30          Old Navy       men  39.99   12527.129
+31      Ralph Lauren       men  89.50   12792.598
+32      Ralph Lauren       men  89.50   10857.715
+33    Tommy Hilfiger       men  59.50   11446.106
+34    Tommy Hilfiger       men  59.50   12599.101
+35     True Religion       men 159.00   11203.137
+36     True Religion       men 179.00    9625.469
+37            Uniqlo       men  49.90   10783.892
+38            Uniqlo       men  49.90   10452.411
+39          Wrangler       men  58.00   13079.606
+40          Wrangler       men  48.00    9407.091
+41 7 for All Mankind     women 199.00    5557.218
+42 7 for All Mankind     women 159.00    5811.112
+43       Abercrombie     women  78.00    8757.578
+44       Abercrombie     women  88.00    9688.483
+45    American Eagle     women  39.95    6408.587
+46    American Eagle     women  39.95    7834.578
+47           Arizona     women  42.00    6510.059
+48           Arizona     women  42.00    6875.295
+49      Buckle Black     women  89.95    6528.060
+50      Buckle Black     women  92.95    6470.628
+51      Calvin Klein     women  79.50    4702.028
+52      Calvin Klein     women  69.50    5626.324
+53           Express     women  79.90    6544.814
+54           Express     women  79.90    6496.120
+55               Gap     women  69.95    4454.429
+56               Gap     women  69.95    4612.939
+57             Guess     women  89.00    4572.572
+58             Guess     women  98.00    4490.844
+59               H&amp;M     women  49.99    5557.331
+60               H&amp;M     women   9.99    7424.142
+61           J. Crew     women 125.00    6307.453
+62           J. Crew     women 110.00    4865.783
+63               Lee     women  19.94    6878.150
+64               Lee     women  19.94    6236.635
+65            Levi's     women  54.50    5955.678
+66            Levi's     women  54.50    5412.682
+67             Lucky     women  99.00    5151.472
+68             Lucky     women  79.50    7178.176
+69          Old Navy     women  29.99    5557.106
+70          Old Navy     women  29.99    5002.489
+71      Ralph Lauren     women  89.50    5318.592
+72      Ralph Lauren     women  89.50    5318.592
+73    Tommy Hilfiger     women  69.50    5481.579
+74    Tommy Hilfiger     women  69.50    7059.797
+75     True Religion     women 249.00    5384.557
+76     True Religion     women 179.00    5387.754
+77            Uniqlo     women  39.90    6704.796
+78            Uniqlo     women  39.90    5253.816
+79          Wrangler     women  99.00    6110.318
+80          Wrangler     women  99.00    5936.541</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Save cleaned data ####</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Code referenced from:https://tellingstorieswithdata.com/02-drinking_from_a_fire_hose.html</span></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co"># save cleaned pockets data </span></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(</span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> cleaned_pockets_data,</span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">file =</span> here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"data/analysis_data/cleaned_pockets_data.csv"</span>)</span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="co"># save json cleaned data (pocket area measurements)</span></span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Change from json format to csv</span></span>
-<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>csv_file <span class="ot">&lt;-</span> here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"data/analysis_data/cleaned_area_data.csv"</span>)</span>
-<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Write the cleaned data frame to a CSV file</span></span>
-<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(cleaned_area_data, csv_file)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Save cleaned data ####</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co"># save json cleaned data (pocket area measurements)</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Change from json format to csv</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>csv_file <span class="ot">&lt;-</span> here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"data/analysis_data/cleaned_area_data.csv"</span>)</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Write the cleaned data frame to a CSV file</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(cleaned_area_data, csv_file)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 
