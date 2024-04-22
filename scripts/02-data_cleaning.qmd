@@ -13,7 +13,6 @@ library(jsonlite)
 library(readr)
 library(janitor)
 library(dplyr)
-
 ```
 
 ```{r}
@@ -85,7 +84,5 @@ csv_file <- here::here("data/analysis_data/cleaned_pocket_area_data.csv")
 
 # Write the cleaned data frame to a CSV file
 write_csv(cleaned_pocket_area_data, csv_file)
-
-
 ```
 
