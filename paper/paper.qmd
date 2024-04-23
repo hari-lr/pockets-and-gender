@@ -24,9 +24,9 @@ library(dplyr)
 library(janitor)
 library(kableExtra)
 
-## read in cleaned data 
-cleaned_pockets_data = read_csv(
-  file = here::here("data/analysis_data/cleaned_pockets_data.csv"),
+## read in raw data 
+pocket_area_data = read_csv(
+  file = here::here("data/raw_data/pocket_area_data.csv"),
   show_col_types = FALSE
 )
 
@@ -35,8 +35,19 @@ cleaned_area_data = read_csv(
   file = here::here("data/analysis_data/cleaned_area_data.csv"),
   show_col_types = FALSE
 )
+
+women_jeans_data = read_csv(
+  file = here::here("data/analysis_data/women_jeans_data.csv"),
+  show_col_types = FALSE
+)
+
+men_jeans_data = read_csv(
+  file = here::here("data/analysis_data/men_jeans_data.csv"),
+  show_col_types = FALSE
+)
 ```
 
+\newpage
 
 # Introduction
 
@@ -51,27 +62,18 @@ Using the data from the previously described article, this paper will graphicall
 This paper is structured into the following sections: Data, which explains the collection and cleaning process; Results, presenting trends and correlations found in the data; Discussion, comparing and evaluating the data; and Conclusion, summarizing the findings.
 
 
-
 # Data 
 The data utilized in this paper was retrieved from The Pudding GitHub Site Portal, specifically the data collected by by Jan Diehm and Amber Thomas  [CITE]. Data was collected, cleaned, and analyzed using the open-source statistical programming software R [@citeR]. This process involved various packages within R, including tidyverse [@tidyverse], `ggplot2` [@ggplot2], `dplyr` [@dplyr], `readxl` [@readxl], `tibble` [@tibble], `janitor` [@janitor], `KableExtra` [@kableExtra], `knitr` [@knitr], `ggbeeswarm` [@ggbeeswarm], and `ggrepel` [@ggrepel]. A comprehensive description of the data gathering and cleaning process is provided in the following subsections. [MAKE SURE ALL LIBRARIES ARE CITED]
-
-## CSV Dataset and cleaning
-Explain how the data was collected and measured. 
 
 ```{r}
 #| warning: false
 #| message: false
 #| echo: false
-#| label: tbl-cleaned_pockets_data
-#| tbl-cap: Sample of Cleaned Pockets Data
+#| label: tbl-raw_data
+#| tbl-cap: "Sample of Raw Pocket Area, Price and Gender Data"
 
-# Code referenced from: https://github.com/InessaDeAngelis/Toronto_Elections/blob/main/outputs/paper/toronto_elections_paper.qmd
+head(pocket_area_data, 5)
 
-head (cleaned_pockets_data, 5) |>
-  kable(
-    col.names = c("brand","men_women","price"),
-  booktabs = TRUE
-  )
 ```
 
 
@@ -81,19 +83,135 @@ head (cleaned_pockets_data, 5) |>
 #| message: false
 #| echo: false
 #| label: tbl-cleaned_area_data
-#| tbl-cap: Sample of Cleaned Pocket Area Data
+#| tbl-cap: "Sample of Cleaned Pocket Area, Price and Gender Data"
 
 # Code referenced from: https://github.com/InessaDeAngelis/Toronto_Elections/blob/main/outputs/paper/toronto_elections_paper.qmd
 
 head (cleaned_area_data, 5) |>
   kable(
-    col.names = c("brand","style","men_women","pocket_area","price"),
+    col.names = c("brand","men_women","price","pocket_area"),
   booktabs = TRUE
   )
 ```
 
 
+# Model
+Given the similarity in lightness observed in foundation shades across both countries, it was of interest to investigate if any differences in saturation existed. This investigation was motivated by the fact that the local population in each country has unique undertones. Before conducting the analysis, several tests were conducted to verify that the model assumptions (See Appendix A), including linearity, normality, and homoscedasticity of residuals, were satisfied, thereby ensuring that the model was well-suited for the data at hand.
+
+The null hypothesis: there is no significant linear relationship between the lightness of foundation shades and the saturation of undertones.
+
+The alternative hypothesis: there is a significant linear relationship between the lightness of foundation shades and the saturation of undertones.
+
+
+A linear regression analysis can be conducted to test this hypothesis and to determine whether a statistically significant relationship exists between the variables. A low p-value for the regression coefficient for saturation would provide evidence against the null hypothesis, indicating that changes in saturation do result in a meaningful variation in lightness across foundation shades. On the other hand, if the p-value is high, this would suggest that there is not enough evidence to reject the null hypothesis, and there may be no significant linear relationship between the variables. Ultimately, the results of the analysis will inform whether the null hypothesis can be rejected or not. The mathematical equation for the linear regression model can be written as:
+
+$$L = \beta_0 + \beta_1S + \epsilon$$
+
+Where:
+
+- $L$ represents the dependent variable, which is the overall lightness of the foundation shade
+- $S$ represents the independent variable, which is the saturation of the foundation shade
+- $\beta_0$ represents the intercept of the regression line, which is the predicted value of $L$ when $S$ is equal to zero
+- $\beta_1$ represents the slope of the regression line, which is the change in $L$ for a one-unit increase in $S$
+- $\epsilon$ represents the random error term, which accounts for variability in $L$ that is not explained by the relationship with $S$
+
+The aim of linear regression is to estimate the values of $\beta_0$ and $\beta_1$ that minimize the sum of squared errors between the predicted and actual values of lightness ($L$) for the given values of saturation ($S$) in the dataset. By minimizing this sum of squared errors, the linear regression model can produce the best-fit line to describe the linear relationship between the two variables, allowing for the estimation of $L$ values based on known $S$ values.
+
+In this project, the lightness variable ($L$) is measured on a scale of 0 to 100, while the saturation variable ($S$) is measured on a scale of 0 to 1. Therefore, the slope coefficient $\beta_1$ in the linear regression model would represent the change in lightness ($L$) for a one-unit increase in saturation ($S$), where a one-unit increase in $S$ corresponds to an increase of 1/100 in the saturation of the foundation shade. The intercept $\beta_0$ in the model would represent the expected value of $L$ when $S$ is equal to zero, which in this case would correspond to the lightness value for a completely desaturated foundation shade.
+
+
+\newpage
+
+
 # Results
+```{r}
+#| warning: false
+#| message: false
+#| echo: false
+#| label: fig-price_per_pocket_men
+#| fig-cap: "Jean Price vs Pocket Size (Men)"
+
+# Create plot for men_jeans_data
+men_jeans_plot <- ggplot(men_jeans_data, aes(x = pocket_area, y = price)) +
+  geom_point(color = "blue") +
+  geom_smooth(method = lm, se = FALSE) +
+  labs(
+    title = "Pocket Area and Price for Men's Jeans",
+    x = "Pocket Area (square pixels)",
+    y = "Price"
+  ) +
+  theme_classic()
+
+# Print the plot
+men_jeans_plot
+
+# Fit a linear regression model
+model <- lm(price ~ pocket_area, data = men_jeans_data)
+
+# View the summary of the model
+summary(model)
+
+
+```
+
+```{r}
+#| warning: false
+#| message: false
+#| echo: false
+#| label: fig-price_per_pocket_women
+#| fig-cap: "Jean Price vs Pocket Size (Women)"
+
+# Create plot for men_jeans_data
+women_jeans_plot <- ggplot(women_jeans_data, aes(x = pocket_area, y = price)) +
+  geom_point(color = "blue") +
+  geom_smooth(method = lm, se = FALSE) +
+  labs(
+    title = "Pocket Area and Price for Women's Jeans",
+    x = "Pocket Area (square pixels)",
+    y = "Price"
+  ) +
+  theme_classic()
+
+# Print the plot
+women_jeans_plot
+
+# Fit a linear regression model
+model <- lm(price ~ pocket_area, data = women_jeans_data)
+
+# View the summary of the model
+summary(model)
+
+
+```
+
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+#| label: fig-price_per_pocket_gender
+#| fig-cap: "Jean Price vs. Pocket Area Size per Gender"
+
+## Comparing between average building scores vs.average total income per ward
+
+#Code referenced from: https://github.com/christina-wei/INF3104-1-Covid-Clinics/blob/main/outputs/paper/covid_clinics.qmd
+
+cleaned_area_data |>
+  ggplot(aes(x = pocket_area, y = price, color = men_women)) + 
+  geom_point() + 
+  geom_smooth(method=lm, se=FALSE) + 
+  labs(
+    title = "Pocket Area and Price by Gender",
+    x = "Pocket Area (square pixels)",
+    y = "Price",
+    color = "Gender"
+  ) +
+  scale_color_manual(values = c("blue", "red")) +  # Set custom colors
+  theme_classic()
+```
+
+
+
 
 
 
