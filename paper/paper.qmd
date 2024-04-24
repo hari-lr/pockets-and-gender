@@ -51,7 +51,7 @@ men_jeans_data = read_csv(
 
 # Introduction
 
-Throughout history, women have faced numerous restrictions and limitations, often ingrained within societal norms and cultural practices. Among these limitations, the realm of fashion has served as both a reflection and an enforcer of gender-based inequalities. From ancient times to the modern era, clothing has been a means of expressing social status, cultural identity, and gender roles. According to design expert, Hannah Carlson, pocket inequality stems from the way clothes are designed and made, she explains that: "From a very early age, I think we sort of agree as a culture that womenswear, girlswear is meant to be pretty," she said. "And menswear, boyswear is meant to be utilitarian" [@carlson]. Men's garments historically incorporated functional pockets, allowing them to carry essentials such as money, keys, and tools, women's clothing has often lacked this practical feature. Instead, women's garments have frequently been designed with form-fitting silhouettes, delicate fabrics, and ornamental details, prioritizing aesthetics over utility.However, the 1880s, women began to be vocal about pocket inequality, as the "demand for the vote and the demand for pockets were made together" [@carlson].
+Throughout history, women have faced numerous restrictions and limitations, often ingrained within societal norms and cultural practices. Among these limitations, the realm of fashion has served as both a reflection and an enforcer of gender-based inequalities. From ancient times to the modern era, clothing has been a means of expressing social status, cultural identity, and gender roles. According to design expert, Hannah Carlson, pocket inequality stems from the way clothes are designed and made, she explains that: "From a very early age, I think we sort of agree as a culture that womenswear, girlswear is meant to be pretty," she said. "And menswear, boyswear is meant to be utilitarian" [@carlson]. Men's garments historically incorporated functional pockets, allowing them to carry essentials such as money, keys, and tools, women's clothing has often lacked this practical feature. Instead, women's garments have frequently been designed with form-fitting silhouettes, delicate fabrics, and ornamental details, prioritizing aesthetics over utility. However, the 1880s, women began to be vocal about pocket inequality, as the "demand for the vote and the demand for pockets were made together" [@carlson].
 
 
 In 2018, Jan Diehm & Amber Thomas published Womens´s Pockets are Inferior on *The Pudding*, a data-centric digital publication. In this paper, they "measured pockets in both men´s and women’s pants in 20 of the US’ most popular blue jeans brands" [@pudding]. They "programmatically determined whether various everyday items could fit in an otherwise empty pocket in jeans that aren’t being worn" [@pudding]., and concluded that women´s pockets were less functional than men´s. 
@@ -197,7 +197,6 @@ Where:
 
 The linear regression seeked to determine the optimal parameters $\beta_0$ and $\beta_1$ that minimize the discrepancies between predicted and observed prices across varying pocket areas in the dataset. Through this minimization process, the model constructs a line that most accurately represents the association between pocket area and price. Consequently, we can predict price values based on known pocket area measurements. This regression analysis sheds light on how pocket area influences the pricing of jeans for both men and women, offering valuable insights into the pricing dynamics within each gender category.
 
-\newpage
 # Results
 A merged scatterplot was generated to compare pocket area and price for both men's and women's jeans. Each gender category was represented by a distinct color in the plot. Additionally, linear regression lines were overlaid for each gender group to observe potential differences in the relationship between pocket area and price (see @fig-price_per_pocket_gender).
 
@@ -234,6 +233,7 @@ For men's jeans, the coefficient estimate for pocket area ($\beta_1$) is -0.0022
 In contrast, for women's jeans, the coefficient estimate for pocket area is -0.009345, also indicating a small negative association with price, although it is slightly larger in magnitude compared to men's jeans. However, like men's jeans, this coefficient is statistically insignificant with a p-value of 0.1804. The \( R^2 \) value for women's jeans is slightly higher at 0.04671, indicating that pocket area explains a slightly larger proportion of the variance in price compared to men's jeans. Despite this, the overall relationship between pocket area and price remains weak for women's jeans (see @tbl-women_lm).
 
 In summary, the results suggest that pocket area is not a significant predictor of price for either men's or women's jeans in the dataset analyzed. Other factors not considered in this analysis are likely to have a greater influence on the pricing of jeans for both genders.
+\newpage
 
 ```{r}
 #| warning: false
@@ -274,19 +274,20 @@ kable(summary_table_women, align = "c")
 # Discussion
 
 
-## First discussion point {#sec-first-point}
+## First discussion point
+
+as mentioned before
+
 ## Second discussion point
 ## Third discussion point
-
-##Weaknesses and next steps
-
+https://www.mydoh.ca/learn/blog/lifestyle/what-is-the-pink-tax-a-guide-for-teens/
 
 
+## Weaknesses and next steps
 
+The analysis has several limitations. Firstly, it narrowly focuses on the relationship between pocket area and price, neglecting other potential pricing determinants in the fashion industry. The dataset's limited scope, derived from measurements of specific brands and styles, may not be representative of the broader jeans market. Additionally, the regression analysis yielded statistically insignificant results for pocket area coefficients in both men's and women's jeans, indicating a weak relationship. Moreover, the unknown units of pocket area measurement limits accurate interpretation. 
 
-
-
-
+To address these limitations, future research could incorporate additional pricing determinants like brand reputation and market demand. Diversifying the dataset to include jeans from additional brands and price points would enhance representativeness. Qualitative research methods could provide deeper insights into consumer behavior, offering a more comprehensive understanding of purchasing decisions beyond pocket considerations. Considering cultural and societal factors influencing fashion trends would offer valuable context for interpreting the results. Moreover, it would be important to increment the number of jeans measured to improve the robustness and generalizability of the findings. 
 
 \newpage
 
