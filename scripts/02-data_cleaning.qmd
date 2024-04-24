@@ -30,29 +30,44 @@ pocket_area_data <- fromJSON(json_file)
 cleaned_area_data <-
   clean_names(pocket_area_data)
 
-# Select the rows of interest
-cleaned_area_data <-
-  cleaned_area_data |>
+# Filter the data to include only jeans for women and select columns
+women_jeans_data <- cleaned_area_data |>
+  filter(men_women == "women") |>
   select(
-    brand,
-    men_women,
     price,
-    pocket_area,
-  ) 
+    pocket_area
+  )
 
-cleaned_area_data
+women_jeans_data
 
 
+# Filter the data to include only jeans for men and select columns
+men_jeans_data <- cleaned_area_data|>
+  filter(men_women == "men") |>
+  select(
+    price,
+    pocket_area
+  )
+
+men_jeans_data
 ```
 
 ```{r}
 #### Save cleaned data ####
-# save json cleaned data (pocket area measurements)
+# Code referenced from: chat.openai.com 
 
 # Change from json format to csv
 csv_file <- here::here("data/analysis_data/cleaned_area_data.csv")
 
-# Write the cleaned data frame to a CSV file
-write_csv(cleaned_area_data, csv_file)
+# Specify file paths
+men_csv_file <- here::here("data/analysis_data/men_jeans_data.csv")
+women_csv_file <- here::here("data/analysis_data/women_jeans_data.csv")
+
+# Save men_jeans_data to a CSV file
+write.csv(men_jeans_data, men_csv_file, row.names = FALSE)
+
+# Save women_jeans_data to a CSV file
+write.csv(women_jeans_data, women_csv_file, row.names = FALSE)
+
 ```
 
