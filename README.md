@@ -26,10 +26,3 @@ The arrow package is an interface to the Apache Arrow C++ libraries, and Parquet
 ## Statement on LLM usage
 
 LLMs were used for some aspects of the code, particularly in the data downloading script (01_clean_data.R), cleaning script (02_clean_data.R) and final paper (paper.qmd). The LLM used was ChatGPT. Receipts are available in the other/llms/usage.txt.
-
-
-## Some checks
-
-- [ ] Remove files that you're not using
-- [ ] Update comments in R scripts
-- [ ] Remove this checklist
