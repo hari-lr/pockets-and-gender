@@ -23,6 +23,7 @@ library(ggplot2)
 library(dplyr)
 library(janitor)
 library(kableExtra)
+library(knitr)
 
 ## read in raw data 
 pocket_area_data = read_csv(
@@ -72,7 +73,7 @@ The data utilized in this paper was retrieved from The Pudding GitHub Site Porta
 In the original study, researchers examined jean pocket sizes across 20 brands, encompassing both men's and women's jeans, including skinny and straight styles. The assessment involved scrutinizing four pairs of jeans per brand, all tailored with a 32-inch waistband, despite falling below the median waist size for women in the US. Measurements were meticulously taken in physical stores located in Nashville, New York, and Seattle, with pocket dimensions recorded while jeans were unbuttoned and unzipped, from the inside [@pudding]. 
 The study incorporated computer-generated images to illustrate pocket curvature. Various objects, such as standard pen sizes and a front pocket wallet, were utilized to evaluate pocket compatibility. Additionally, area measurements were computed using the `d3.polygonArea()` function in d3.v4, offering valuable insights into the spatial characteristics of the jean pockets. These methods were intended to give a complete understanding of jean pocket sizes and how well they can hold everyday items. [@pudding].
 
-In this paper, the dataset used for analysis was obtained from `measurementRectangles.json`. This dataset mirrors the measurements found in `measurements.csv`, including brand, style, gender specification (men or women), product name, brand size, waist size, fabric composition, price, and height and width measurements of jean pockets  (see @tbl-raw_data). Notably, the dataset contains a "pocketArea" column representing the area of the polygon generated from a pocket's measurements. However, it's important to note that the units of measurement for this area are not explicitly specified in the provided metadata. To determine the units, one must examine how the measurements were collected and processed. Since the measurements were processed using computer-generated calculations and intended for web display, it is possible that the pocket area is denoted in square centimeters (px²). However, without explicit confirmation from the data documentation or creators of the dataset, absolute certainty regarding the units of measurement remains elusive.
+For this paper, the dataset used for analysis was obtained from `measurementRectangles.json`. This dataset mirrors the measurements found in `measurements.csv`, including brand, style, gender specification (men or women), product name, brand size, waist size, fabric composition, price, and height and width measurements of jean pockets  (see @tbl-raw_data). Notably, the dataset contains a "pocketArea" column representing the area of the polygon generated from a pocket's measurements. However, it's important to note that the units of measurement for this area are not explicitly specified in the provided metadata. To determine the units, one must examine how the measurements were collected and processed. Since the measurements were processed using computer-generated calculations and intended for web display, it is possible that the pocket area is denoted in square centimeters (px²). However, without explicit confirmation from the data documentation or creators of the dataset, absolute certainty regarding the units of measurement remains elusive.
 \newpage
 
 ```{r}
@@ -127,6 +128,7 @@ head(women_jeans_data, 5) |>
     col.names = c("Price", "Pocket Area"),
     booktabs = TRUE
   )
+
 ```
 \newpage
 
@@ -233,7 +235,7 @@ For men's jeans, the coefficient estimate for pocket area ($\beta_1$) is -0.0022
 In contrast, for women's jeans, the coefficient estimate for pocket area is -0.009345, also indicating a small negative association with price, although it is slightly larger in magnitude compared to men's jeans. However, like men's jeans, this coefficient is statistically insignificant with a p-value of 0.1804. The \( R^2 \) value for women's jeans is slightly higher at 0.04671, indicating that pocket area explains a slightly larger proportion of the variance in price compared to men's jeans. Despite this, the overall relationship between pocket area and price remains weak for women's jeans (see @tbl-women_lm).
 
 In summary, the results suggest that pocket area is not a significant predictor of price for either men's or women's jeans in the dataset analyzed. Other factors not considered in this analysis are likely to have a greater influence on the pricing of jeans for both genders.
-\newpage
+
 
 ```{r}
 #| warning: false

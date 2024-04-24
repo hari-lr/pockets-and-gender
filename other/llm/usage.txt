@@ -386,6 +386,57 @@ jeans_data <- rbind(men_jeans, women_jeans)
 head(jeans_data)
 This code will generate a dataset with 40 rows of data for men's jeans and 40 rows of data for women's jeans, with prices ranging from 30 to 200 CAD and pocket sizes varying between 12 to 20 cm.
 
+women_jeans_data give me a test that checks that the number of items is 40 
+ChatGPT
+Here's a test to check that the number of items in the women_jeans_data dataframe is 40:
+
+r
+Copy code
+# Test: Check number of items in women_jeans_data
+if (nrow(women_jeans_data) == 40) {
+  print("Test Passed: Number of items in women_jeans_data is correct (40).")
+} else {
+  print("Test Failed: Number of items in women_jeans_data is incorrect.")
+}
+This test will verify whether there are indeed 40 items in the women_jeans_data dataframe, as expected.
+
+User
+check that the lowest number for men_jeans_data is 39.99
+ChatGPT
+Here's a test to check that the lowest price in the men_jeans_data dataframe is 39.99:
+
+r
+Copy code
+# Test: Check lowest price in men_jeans_data
+if (min(men_jeans_data$price) == 39.99) {
+  print("Test Passed: Lowest price in men_jeans_data is correct (39.99 CAD).")
+} else {
+  print("Test Failed: Lowest price in men_jeans_data is incorrect.")
+}
+This test will verify whether the lowest price in the men_jeans_data dataframe is indeed 39.99 CAD.
+
+check that the highest number for men_jeans_data is 209
+ChatGPT
+Here's a test to check that the highest price in the men_jeans_data dataframe is 209:
+
+r
+Copy code
+# Test: Check highest price in men_jeans_data
+if (max(men_jeans_data$price) == 209) {
+  print("Test Passed: Highest price in men_jeans_data is correct (209 CAD).")
+} else {
+  print("Test Failed: Highest price in men_jeans_data is incorrect.")
+}
+This test will verify whether the highest price in the men_jeans_data dataframe is indeed 209 CAD.
+
+
+
+
+
+
+
+
+
 
 
 

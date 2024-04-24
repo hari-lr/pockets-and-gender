@@ -13,20 +13,22 @@ library(tidyverse)
 
 
 #### Test data ####
-# Test 1
+# Code referenced from: https://chat.openai.com/
 
-# Check number of items in women_jeans_data 
-if (nrow(women_jeans_data) == 40) {
-  print("Test Passed: Number of items in women_jeans_data is correct (40).")
-} else {
-  print("Test Failed: Number of items in women_jeans_data is incorrect.")
-}
+# Test 1
 
 # Check number of items in men_jeans_data
 if (nrow(men_jeans_data) == 40) {
   print("Test Passed: Number of items in men_jeans_data is correct (40).")
 } else {
   print("Test Failed: Number of items in men_jeans_data is incorrect.")
+}
+
+# Check number of items in women_jeans_data 
+if (nrow(women_jeans_data) == 40) {
+  print("Test Passed: Number of items in women_jeans_data is correct (40).")
+} else {
+  print("Test Failed: Number of items in women_jeans_data is incorrect.")
 }
 
 # Test 2
@@ -43,4 +45,19 @@ if (min(women_jeans_data$price) == 9.99) {
   print("Test Passed: Lowest price in women_jeans_data is correct.")
 } else {
   print("Test Failed: Lowest price in women_jeans_data is incorrect.")
+}
+
+# Test 3
+# Check highest price in men_jeans_data
+if (max(men_jeans_data$price) == 209) {
+  print("Test Passed: Highest price in men_jeans_data is correct.")
+} else {
+  print("Test Failed: Highest price in men_jeans_data is incorrect.")
+}
+
+# Check highest price in women_jeans_data
+if (max(women_jeans_data$price) == 249) {
+  print("Test Passed: Highest price in women_jeans_data is correct.")
+} else {
+  print("Test Failed: Highest price in women_jeans_data is incorrect.")
 }
