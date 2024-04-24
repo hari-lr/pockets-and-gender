@@ -5,7 +5,7 @@ author: Hari Lee Robledo
 thanks: "Code and data are available at: https://github.com/hari-lr/pockets-and-gender"
 date: today
 date-format: long
-abstract: "Fashion has long reflected and reinforced gender inequalities, with women's clothing often lacking functional pockets found in men's garments. A 2018 study by Jan Diehm & Amber Thomas on The Pudding revealed this discrepancy, highlighting inferior pocket functionality in women's jeans. This paper aims to reproduce these findings and explore if gender disparities extend to pricing. Using the same data, we analyze the correlation between prices of men's and women's jeans. Results suggest that women's jeans not only have smaller pockets but also tend to be more expensive. This study sheds light on gender inequalities in everyday products and their broader implications. [UPDATE according to findingsThe findings revealed that pocket area alone may not be a strong predictor of jeans prices for either gender, and there may be other factors influencing the pricing of jeans.]"
+abstract: "This paper explores the intersection of gender, fashion, and pricing dynamics, focusing on pocket inequality in jeans. The study investigates whether there is a correlation between pocket size and jean prices for men and women. Utilizing data collected by Diehm & Thomas (2018) from 20 popular US jeans brands, the analysis employs linear regression models, standard deviation and averages to examine the relationship between pocket area and price. The findings reveal that pocket area is not a significant predictor of price for either men's or women's jeans, indicating complex pricing dynamics beyond pocket considerations. The implications of these findings underscore the need for further discussions surrounding the pink tax and pocket inequality by providing empirical evidence of pricing disparities. While the average price of women's jeans appears slightly lower than men's, the considerable variability in prices within each gender category suggests deeper complexities."
 format: pdf
 number-sections: true
 toc: true
@@ -48,32 +48,32 @@ men_jeans_data = read_csv(
 )
 ```
 
-\newpage
 
 # Introduction
 
 Throughout history, women have faced numerous restrictions and limitations, often ingrained within societal norms and cultural practices. Among these limitations, the realm of fashion has served as both a reflection and an enforcer of gender-based inequalities. From ancient times to the modern era, clothing has been a means of expressing social status, cultural identity, and gender roles. According to design expert, Hannah Carlson, pocket inequality stems from the way clothes are designed and made, she explains that: "From a very early age, I think we sort of agree as a culture that womenswear, girlswear is meant to be pretty," she said. "And menswear, boyswear is meant to be utilitarian" [@carlson]. Men's garments historically incorporated functional pockets, allowing them to carry essentials such as money, keys, and tools, women's clothing has often lacked this practical feature. Instead, women's garments have frequently been designed with form-fitting silhouettes, delicate fabrics, and ornamental details, prioritizing aesthetics over utility. However, the 1880s, women began to be vocal about pocket inequality, as the "demand for the vote and the demand for pockets were made together" [@carlson].
 
 
-In 2018, Jan Diehm & Amber Thomas published Womens´s Pockets are Inferior on *The Pudding*, a data-centric digital publication. In this paper, they "measured pockets in both men´s and women’s pants in 20 of the US’ most popular blue jeans brands" [@pudding]. They "programmatically determined whether various everyday items could fit in an otherwise empty pocket in jeans that aren’t being worn" [@pudding]., and concluded that women´s pockets were less functional than men´s. 
+In 2018, Jan Diehm & Amber Thomas published *Womens´s Pockets are Inferior* on *The Pudding*, a data-centric digital publication. In this paper, they "measured pockets in both men´s and women’s pants in 20 of the US’ most popular blue jeans brands" [@pudding]. They "programmatically determined whether various everyday items could fit in an otherwise empty pocket in jeans that aren’t being worn" [@pudding]., and concluded that women´s pockets were less functional than men´s. 
 
 
-Using the data from the previously described article, this paper will graphically reproduce the results and examine whether there is a correlation between the prices of men's jeans and women's jeans. The study seeks to determine if women's jeans not only have smaller and less functional pockets but also tend to be more expensive. This will help better understand if gender inequality is only reflected in the jean's pockets or in pricing as well. A linear regression analysis revealed divergent findings regarding the relationship between pocket area and price in men's and women's jeans. For men's jeans, no significant correlation was found between pocket area and price, indicating that changes in pocket size do not significantly affect the price of men's jeans. In contrast, although a negative correlation was observed in women's jeans, it was not statistically significant, suggesting that while larger pocket areas might be associated with slightly lower prices, other factors likely play a more influential role in determining the price of women's jeans. 
+Using the data from the previously described article, this paper examines whether there is a correlation between the prices of men's jeans and women's jeans. The study seeks to determine if women's jeans not only have smaller and less functional pockets but also tend to be more expensive. This will help better understand if gender inequality is only reflected in the jean's pockets or in pricing as well. A linear regression analysis revealed divergent findings regarding the relationship between pocket area and price in men's and women's jeans. For men's jeans, no significant correlation was found between pocket area and price, indicating that changes in pocket size do not significantly affect the price of men's jeans. In contrast, although a negative correlation was observed in women's jeans, it was not statistically significant, suggesting that while larger pocket areas might be associated with slightly lower prices, other factors likely play a more influential role in determining the price of women's jeans. 
 
 This paper is structured into the following sections: Data, which explains the collection and cleaning process; Results, presenting trends and correlations found in the data; Discussion, comparing and evaluating the data; and Conclusion, summarizing the findings.
 
 
 
 # Data 
-The data utilized in this paper was retrieved from The Pudding GitHub Site Portal, specifically the data collected by Jan Diehm and Amber Thomas  [@pudding]. Data was collected, cleaned, and analyzed using the open-source statistical programming software R [@citeR]. This process involved various packages within R, including `tidyverse` [@tidyverse], `jsonlite` [@jsonlite], `readr` [@readr], `janitor` [@janitor], `dplyr` [@dplyr], `tibble` [@tibble], `ggplot2` [@ggplot2], `knitr` [@knitr], and `kableExtra` [@kableExtra]. A comprehensive description of the data gathering and cleaning process is provided in the following subsections. 
+The data utilized in this paper was retrieved from The Pudding GitHub Site Portal, specifically the data collected by Jan Diehm and Amber Thomas [@pudding]. Data was collected, cleaned, and analyzed using the open-source statistical programming software R [@citeR]. This process involved various packages within R, including `tidyverse` [@tidyverse], `jsonlite` [@jsonlite], `readr` [@readr], `janitor` [@janitor], `dplyr` [@dplyr], `tibble` [@tibble], `ggplot2` [@ggplot2], `knitr` [@knitr], and `kableExtra` [@kableExtra]. A comprehensive description of the data gathering and cleaning process is provided in the following subsections. 
 
 
 ## Dataset 
 
 In the original study, researchers examined jean pocket sizes across 20 brands, encompassing both men's and women's jeans, including skinny and straight styles. The assessment involved scrutinizing four pairs of jeans per brand, all tailored with a 32-inch waistband, despite falling below the median waist size for women in the US. Measurements were meticulously taken in physical stores located in Nashville, New York, and Seattle, with pocket dimensions recorded while jeans were unbuttoned and unzipped, from the inside [@pudding]. 
-The study incorporated computer-generated images to illustrate pocket curvature. Various objects, such as standard pen sizes and a front pocket wallet, were utilized to evaluate pocket compatibility. Additionally, area measurements were computed using the `d3.polygonArea()` function in d3.v4, offering valuable insights into the spatial characteristics of the jean pockets. These methods were intended to give a complete understanding of jean pocket sizes and how well they can hold everyday items. [@pudding].
 
-For this paper, the dataset used for analysis was obtained from `measurementRectangles.json`. This dataset mirrors the measurements found in `measurements.csv`, including brand, style, gender specification (men or women), product name, brand size, waist size, fabric composition, price, and height and width measurements of jean pockets  (see @tbl-raw_data). Notably, the dataset contains a "pocketArea" column representing the area of the polygon generated from a pocket's measurements. However, it's important to note that the units of measurement for this area are not explicitly specified in the provided metadata. To determine the units, one must examine how the measurements were collected and processed. Since the measurements were processed using computer-generated calculations and intended for web display, it is possible that the pocket area is denoted in square centimeters (px²). However, without explicit confirmation from the data documentation or creators of the dataset, absolute certainty regarding the units of measurement remains elusive.
+Additionally,the study incorporated computer-generated images to illustrate pocket curvature. Various objects, such as standard pen sizes and a front pocket wallet, were utilized to evaluate pocket compatibility. These area measurements were computed using the `d3.polygonArea()` function in d3.v4 [@pudding].
+
+For this paper, the dataset used  was obtained from `measurementRectangles.json`. This dataset mirrors the measurements found in `measurements.csv`, including pixelsrand, style, gender specification (men or women), product name, brand size, waist size, fabric composition, price, and height and width measurements of jean pockets  (see @tbl-raw_data). Notably, the dataset contains a "pocketArea" column representing the area of the polygon generated from a pocket's measurements. However, it's important to note that the units of measurement for this area are not explicitly specified in the provided metadata. To determine the units, one must examine how the measurements were collected and processed. Since the measurements were processed using computer-generated calculations and intended for web display, it is possible that the pocket area is denoted in square pixels (px²). However, without explicit confirmation from the data documentation or creators of the dataset, absolute certainty regarding the units of measurement remains elusive.
 \newpage
 
 ```{r}
@@ -99,8 +99,7 @@ head (data_subset, 5) |>
 
 ## Data Cleaning
 
-Initially, the code read the JSON data containing pocket area measurements, standardized the column names using the `clean_names()` function, and stored the cleaned data in the `cleaned_area_data` dataframe. Subsequently, the data was filtered based on gender, separating jeans intended for women and men using the `filter()` function. Only the "price" and "pocket_area" columns were retained for further analysis in the resulting dataframes `men_jeans_data` and `women_jeans_data` (see @tbl-menwomen_table), respectively. In the final step, the cleaned data was saved into CSV files. The `write.csv()` function was utilized to export the data, with separate CSV files generated for women's and men's jeans. 
-
+Initially, the code read the JSON data containing pocket area measurements, standardized the column names using the `clean_names()` function, and stored the cleaned data in the `cleaned_area_data` dataframe. Subsequently, the data was filtered based on gender, separating jeans intended for women and men using the `filter()` function. Only the "price" and "pocket_area" columns were retained for further analysis in the resulting dataframes `men_jeans_data` and `women_jeans_data` (see @tbl-menwomen_table), respectively. In the final step, the cleaned data was saved into CSV files. The `write.csv()` function was utilized to export and save the data.
 
 \newpage
 ```{r}
@@ -128,7 +127,6 @@ head(women_jeans_data, 5) |>
     col.names = c("Price", "Pocket Area"),
     booktabs = TRUE
   )
-
 ```
 \newpage
 
@@ -159,7 +157,10 @@ men_jeans_plot
 # Standard deviation of price for men's jeans
 men_price_sd <- sd(men_jeans_data$price)
 
-# Create plot for men_jeans_data
+# Calculate the average price for men's jeans
+men_avg_price <- mean(men_jeans_data$price)
+
+# Create plot for women_jeans_data
 women_jeans_plot <- ggplot(women_jeans_data, aes(x = pocket_area, y = price)) +
   geom_point(color = "red") +
   geom_smooth(method = lm, se = FALSE) +
@@ -176,10 +177,10 @@ women_jeans_plot
 # Standard deviation of price for women's jeans
 women_price_sd <- sd(women_jeans_data$price)
 
+# Calculate the average price for women's jeans
+women_avg_price <- mean(women_jeans_data$price)
+
 ```
-
-These plots visually depict the relationship between pocket area and price for men's and women's jeans. Additionally, to compute the standard deviation of price for both men's and women's jeans, the `sd()` function can be applied to the respective columns in the `men_jeans_data` and `women_jeans_data` dataframes. The standard deviation of price for women's jeans is 48.79, while for men's jeans, it is 40.49, indicating the variability in prices within each gender category. This measure helps assess the spread of prices around the mean and provides insight into the degree of dispersion in price values among the observed jeans.
-
 \newpage
 
 # Model
@@ -197,12 +198,10 @@ Where:
 - $\beta_1$ represents the slope of the regression line, which is the change in $L$ for a one-unit increase in $S$
 - $\epsilon$ represents the random error term, which accounts for variability in $L$ that is not explained by the relationship with $S$
 
-The linear regression seeked to determine the optimal parameters $\beta_0$ and $\beta_1$ that minimize the discrepancies between predicted and observed prices across varying pocket areas in the dataset. Through this minimization process, the model constructs a line that most accurately represents the association between pocket area and price. Consequently, we can predict price values based on known pocket area measurements. This regression analysis sheds light on how pocket area influences the pricing of jeans for both men and women, offering valuable insights into the pricing dynamics within each gender category.
+The linear regression seeked to determine the optimal parameters $\beta_0$ and $\beta_1$ that minimize the discrepancies between predicted and observed prices across varying pocket areas in the dataset. The model constructs a line that most accurately represents the association between pocket area and price. Consequently, we can predict price values based on known pocket area measurements. This regression analysis sheds light on how pocket area influences the pricing of jeans for both men and women, offering valuable insights into the pricing dynamics within each gender category.
 
 # Results
-A merged scatterplot was generated to compare pocket area and price for both men's and women's jeans. Each gender category was represented by a distinct color in the plot. Additionally, linear regression lines were overlaid for each gender group to observe potential differences in the relationship between pocket area and price (see @fig-price_per_pocket_gender).
-
-This visualization facilitated the comparison of how pocket area related to price for men's and women's jeans separately. By including separate regression lines for each gender, we could assess the direction and strength of the relationship between these variables within each group. The use of different colors for men and women aided in distinguishing between the two groups, enabling easy interpretation of the plot.
+A merged scatterplot was generated to compare pocket area and price for both men's and women's jeans. Each gender category was represented by a distinct color in the plot. Additionally, linear regression lines were overlaid for each gender group to observe potential differences in the relationship between pocket area and price (see @fig-price_per_pocket_gender). 
 
 ```{r}
 #| echo: false
@@ -234,7 +233,11 @@ For men's jeans, the coefficient estimate for pocket area ($\beta_1$) is -0.0022
 
 In contrast, for women's jeans, the coefficient estimate for pocket area is -0.009345, also indicating a small negative association with price, although it is slightly larger in magnitude compared to men's jeans. However, like men's jeans, this coefficient is statistically insignificant with a p-value of 0.1804. The \( R^2 \) value for women's jeans is slightly higher at 0.04671, indicating that pocket area explains a slightly larger proportion of the variance in price compared to men's jeans. Despite this, the overall relationship between pocket area and price remains weak for women's jeans (see @tbl-women_lm).
 
-In summary, the results suggest that pocket area is not a significant predictor of price for either men's or women's jeans in the dataset analyzed. Other factors not considered in this analysis are likely to have a greater influence on the pricing of jeans for both genders.
+The results suggest that pocket area is not a significant predictor of price for either men's or women's jeans in the dataset analyzed. Other factors not considered in this analysis are likely to have a greater influence on the pricing of jeans for both genders.
+
+Furthermore, to quantify the central tendency of prices, the average price for both men's and women's jeans was calculated. Using the `mean()` function, it was determined that the average price for men's jeans was $81.184, while for women's jeans, it was $80.316. These average values offer insight into the typical price range within each gender category.
+
+In addition to the average price, the standard deviation of priceswas calculated using the `sd()` function. The standard deviation measures the degree of dispersion or variability in prices within each gender category. For women's jeans, the standard deviation of price was found to be $48.79, indicating a considerable variability in prices. Similarly, for men's jeans, the standard deviation was $40.49, reflecting variability within this gender category as well.
 
 
 ```{r}
@@ -276,13 +279,16 @@ kable(summary_table_women, align = "c")
 # Discussion
 
 
-## First discussion point
+## Price Disparity in Clothing
+The pink tax refers to the phenomenon where products marketed towards girls and women are priced higher than similar products targeted towards boys and men.It represents a type of pricing gender discrimination, leading to women being charged more for items like clothing, toys, and personal care products in comparison to men (@mydoh).
 
-as mentioned before
+An example direclty applicable to clothes where the "Levi's 501 jeans for women [that] are on average 46% more expensive than the men's version" (@forbes). The same pair of jeans for women are priced at $98, while the men's 501 original fit jeans are $89.50 (@blackcurve).
 
-## Second discussion point
-## Third discussion point
-https://www.mydoh.ca/learn/blog/lifestyle/what-is-the-pink-tax-a-guide-for-teens/
+However, when considering the specific aspect of pocket size in jeans, the analysis reveals an interesting but inconclusive finding. While there appears to be a small negative association between pocket area and price for women's jeans, indicating that larger pocket sizes may be associated with slightly lower prices, this relationship is statistically insignificant. The analysis also demonstrates that pocket area explains only a small proportion of the variance in price for women's jeans, suggesting that other factors likely play a more significant role in determining pricing.
+
+Therefore, while pricing disparities according to gender remain a relevant financial phenomenon, the specific relationship between pocket size and price in women's jeans remains weak and inconclusive, which underscores the complexity of pricing dynamics in the fashion industry.
+
+Moreover, while the average price for women's jeans ($80.316) is slightly lower than that for men's jeans ($81.184), this finding may seem contradictory to the general notion of the pink tax, which suggests that women are typically charged more for comparable products. However, when considering the standard deviations calculated for both men's and women's jeans, variability in prices within each gender category becomes evident. The considerable standard deviation for women's jeans ($48.79) implies a wide range of prices, aligning with the idea of pricing gender discrimination and the existence of the pink tax. Yet, the standard deviation for men's jeans ($40.49) also indicates variability, suggesting that pricing disparities may not be exclusive to women's products.
 
 
 ## Weaknesses and next steps
