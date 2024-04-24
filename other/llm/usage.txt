@@ -429,6 +429,26 @@ if (max(men_jeans_data$price) == 209) {
 }
 This test will verify whether the highest price in the men_jeans_data dataframe is indeed 209 CAD.
 
+# Print the plot
+men_jeans_plot
+
+# Standard deviation of price for men's jeans
+men_price_sd <- sd(men_jeans_data$price) give me code to calculate average
+ChatGPT
+To calculate the average price for men's jeans, you can use the mean() function in R. Here's the code:
+
+r
+Copy code
+# Calculate the average price for men's jeans
+men_avg_price <- mean(men_jeans_data$price)
+
+# Print the average price
+print(men_avg_price)
+This code will calculate the average price of men's jeans based on the price column in the men_jeans_data dataframe and store the result in the variable men_avg_price. Finally, it will print the average price to the console.
+
+
+
+
 
 
 
