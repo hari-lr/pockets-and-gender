@@ -1,6 +1,6 @@
 ---
-title: "Jean Pockets and Gender"
-subtitle: "subtitle"
+title: "Exploring Pocket Size and Jean Prices for Men and Women"
+subtitle: "An Analysis of the 2018 *Women´s Pockets are Inferior* Data"
 author: Hari Lee Robledo
 thanks: "Code and data are available at: https://github.com/hari-lr/pockets-and-gender"
 date: today
