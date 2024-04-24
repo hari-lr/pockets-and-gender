@@ -6,16 +6,14 @@
 # License: MIT
 # Pre-requisites: 01-download_data.R
 
-```{r}
+
 #### Workspace setup ####
 library(tidyverse)
 library(jsonlite)
 library(readr)
 library(janitor)
 library(dplyr)
-```
 
-```{r}
 #### Clean data ####
 
 # Code referenced from: chat.openai.com 
@@ -50,9 +48,7 @@ men_jeans_data <- cleaned_area_data|>
   )
 
 men_jeans_data
-```
 
-```{r}
 #### Save cleaned data ####
 # Code referenced from: chat.openai.com 
 
@@ -69,5 +65,5 @@ write.csv(men_jeans_data, men_csv_file, row.names = FALSE)
 # Save women_jeans_data to a CSV file
 write.csv(women_jeans_data, women_csv_file, row.names = FALSE)
 
-```
+
 

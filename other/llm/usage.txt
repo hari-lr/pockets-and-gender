@@ -297,6 +297,97 @@ This code will create a nicely formatted table with the first five variables fro
 
 
 
+# Number of jeans for each gender
+num_jeans <- 40
+
+# Generate data for men's jeans
+men_jeans <- data.frame(
+  gender = rep("Men", num_jeans),
+  price = round(runif(num_jeans, min = 30, max = 200), 2), # Prices between 30 and 200 CAD
+  pocket_area = round(runif(num_jeans, min = 12, max = 20), 2) # Pocket sizes between 12 and 20 cm
+)
+
+# Generate data for women's jeans
+women_jeans <- data.frame(
+  gender = rep("Women", num_jeans),
+  price = round(runif(num_jeans, min = 30, max = 200), 2), # Prices between 30 and 200 CAD
+  pocket_area = round(runif(num_jeans, min = 12, max = 20), 2) # Pocket sizes between 12 and 20 cm
+)
+# Combine the datasets
+jeans_data <- rbind(men_jeans, women_jeans)
+
+jeans_data
+ give me 3 tests
+ChatGPT
+Here are three simple tests to verify aspects of the generated dataset:
+
+Test to ensure the total number of rows in the dataset is 80 (40 for men's jeans and 40 for women's jeans):
+r
+Copy code
+# Test 1: Check total number of rows
+if (nrow(jeans_data) == 80) {
+  print("Test 1 Passed: Total number of rows is correct.")
+} else {
+  print("Test 1 Failed: Total number of rows is incorrect.")
+}
+Test to ensure that the minimum and maximum prices fall within the specified range of 30 to 200 CAD:
+r
+Copy code
+# Test 2: Check price range
+if (all(jeans_data$price >= 30) & all(jeans_data$price <= 200)) {
+  print("Test 2 Passed: Price range is correct.")
+} else {
+  print("Test 2 Failed: Price range is incorrect.")
+}
+Test to ensure that the minimum and maximum pocket areas fall within the specified range of 12 to 20 cm:
+r
+Copy code
+# Test 3: Check pocket area range
+if (all(jeans_data$pocket_area >= 12) & all(jeans_data$pocket_area <= 20)) {
+  print("Test 3 Passed: Pocket area range is correct.")
+} else {
+  print("Test 3 Failed: Pocket area range is incorrect.")
+}
+These tests will help ensure that the generated dataset meets the specified criteria.
+
+give me code to simulate a data set that has 40 jeans for men and 40 jeans for women with prices from 30 to 200 cad and pocket size varying between 12 to 20 cm 
+
+3 / 3
+
+ChatGPT
+Here's some R code to simulate a dataset with 40 jeans for men and 40 jeans for women with prices ranging from 30 to 200 CAD and pocket sizes varying between 12 to 20 cm:
+
+r
+Copy code
+# Set seed for reproducibility
+set.seed(123)
+
+# Number of jeans for each gender
+num_jeans <- 40
+
+# Generate data for men's jeans
+men_jeans <- data.frame(
+  gender = rep("Men", num_jeans),
+  price = round(runif(num_jeans, min = 30, max = 200), 2), # Prices between 30 and 200 CAD
+  pocket_area = round(runif(num_jeans, min = 12, max = 20), 2) # Pocket sizes between 12 and 20 cm
+)
+
+# Generate data for women's jeans
+women_jeans <- data.frame(
+  gender = rep("Women", num_jeans),
+  price = round(runif(num_jeans, min = 30, max = 200), 2), # Prices between 30 and 200 CAD
+  pocket_area = round(runif(num_jeans, min = 12, max = 20), 2) # Pocket sizes between 12 and 20 cm
+)
+
+# Combine the datasets
+jeans_data <- rbind(men_jeans, women_jeans)
+
+# View the first few rows of the dataset
+head(jeans_data)
+This code will generate a dataset with 40 rows of data for men's jeans and 40 rows of data for women's jeans, with prices ranging from 30 to 200 CAD and pocket sizes varying between 12 to 20 cm.
+
+
+
 
 
 

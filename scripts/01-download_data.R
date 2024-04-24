@@ -6,24 +6,22 @@
 # License: MIT
 # Pre-requisites: None
 
-```{r}
 #### Workspace setup ####
 #install.packages()
 library(tidyverse)
 library(readr)
 library(jsonlite)
-```
 
-``` {r}
+
 #### Download measurements json data ####
 # Code referenced from:chat.openai.com 
 github_url <- "https://raw.githubusercontent.com/the-pudding/data/master/pockets/measurementRectangles.json"
 
 # Read the JSON data from GitHub into R
 pocket_area_data <- fromJSON(github_url)
-```
 
-```{r}
+
+
 #### Save measurements json data ####
 # Code referenced from: chat.openai.com
 json_string <- toJSON(pocket_area_data, pretty = TRUE)
@@ -40,5 +38,5 @@ df <- as.data.frame(pocket_area_data)
 
 # Save data frame as CSV
 write.csv(df, "data/raw_data/pocket_area_data.csv", row.names = FALSE)
-```
+
 
