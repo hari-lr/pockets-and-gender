@@ -219,5 +219,86 @@ The fromJSON() function reads the JSON data from the specified file and stores i
 We then convert the JSON data to a data frame using as.data.frame(do.call(rbind, json_data)).
 Finally, we write the data frame to a CSV file using the write_csv() function, which saves the CSV file in the data/raw_data/ directory with the name raw_data.csv.
 
+A tibble: 5 x 64brandstyle menWomen name  fabric price maxHeightFront minHeightFront<chr><chr> <chr>    <chr> <chr>  <dbl><dbl><dbl>1 7 for All Man~ stra~ menThe ~ 98% c~ 17921.5232 7 for All Man~ skin~ menPaxt~ 92% c~ 20921233 Abercrombie    slim  menLang~ 95% c~  7822154 Abercrombie    stra~ menKenn~ 95% c~  7822.5155 American Eagle stra~ menStra~ 85% c~  50.02218# i 56 more variables: rivetHeightFront <dbl>, maxWidthFront <dbl>,#   minWidthFront <dbl>, maxHeightBack <dbl>, minHeightBack <dbl>,#   maxWidthBack <dbl>, minWidthBack <dbl>, cutout <lgl>, waistSize <dbl>,#   updatedStyle <chr>, group <chr>, priceGroup <chr>, pocketArea <dbl>,#   rectanglePhone.area <dbl>, rectanglePhone.cx <dbl>,#   rectanglePhone.cy <dbl>, rectanglePhone.width <dbl>,#   rectanglePhone.height <dbl>, rectanglePhone.angle <dbl> fix this and make it prettier
+ChatGPT
+To fix the formatting and make it prettier, you can organize the data into a more structured table format using the kable() function from the knitr package. Here's how you can do it:
+
+r
+Copy code
+library(knitr)
+
+# Create a tibble with the data
+data <- tibble::tibble(
+  brand = c("7 for All Mankind", "7 for All Mankind", "Abercrombie", "Abercrombie", "American Eagle"),
+  style = c("straight", "skinny", "slim", "straight", "straight"),
+  menWomen = c("men", "men", "men", "men", "men"),
+  name = c("The Name", "Paxton", "Lang", "Kenn", "Straight"),
+  fabric = c("98% cotton", "92% cotton", "95% cotton", "95% cotton", "85% cotton"),
+  price = c(17921.52, 20921.23, 782.21, 7822.51, 50.02),
+  maxHeightFront = c(NA, NA, NA, NA, NA), # Fill in with actual values
+  minHeightFront = c(NA, NA, NA, NA, NA), # Fill in with actual values
+  rivetHeightFront = c(NA, NA, NA, NA, NA), # Fill in with actual values
+  maxWidthFront = c(NA, NA, NA, NA, NA), # Fill in with actual values
+  minWidthFront = c(NA, NA, NA, NA, NA), # Fill in with actual values
+  maxHeightBack = c(NA, NA, NA, NA, NA), # Fill in with actual values
+  minHeightBack = c(NA, NA, NA, NA, NA), # Fill in with actual values
+  maxWidthBack = c(NA, NA, NA, NA, NA), # Fill in with actual values
+  minWidthBack = c(NA, NA, NA, NA, NA), # Fill in with actual values
+  cutout = c(NA, NA, NA, NA, NA), # Fill in with actual values
+  waistSize = c(NA, NA, NA, NA, NA), # Fill in with actual values
+  updatedStyle = c(NA, NA, NA, NA, NA), # Fill in with actual values
+  group = c(NA, NA, NA, NA, NA), # Fill in with actual values
+  priceGroup = c(NA, NA, NA, NA, NA), # Fill in with actual values
+  pocketArea = c(NA, NA, NA, NA, NA), # Fill in with actual values
+  rectanglePhone.area = c(NA, NA, NA, NA, NA), # Fill in with actual values
+  rectanglePhone.cx = c(NA, NA, NA, NA, NA), # Fill in with actual values
+  rectanglePhone.cy = c(NA, NA, NA, NA, NA), # Fill in with actual values
+  rectanglePhone.width = c(NA, NA, NA, NA, NA), # Fill in with actual values
+  rectanglePhone.height = c(NA, NA, NA, NA, NA), # Fill in with actual values
+  rectanglePhone.angle = c(NA, NA, NA, NA, NA) # Fill in with actual values
+)
+
+# Print the table using kable
+kable(data, 
+      caption = "Sample Data", 
+      format = "markdown",
+      col.names = c("Brand", "Style", "Men/Women", "Name", "Fabric", "Price", 
+                    "Max Height Front", "Min Height Front", "Rivet Height Front", 
+                    "Max Width Front", "Min Width Front", "Max Height Back", 
+                    "Min Height Back", "Max Width Back", "Min Width Back", 
+                    "Cutout", "Waist Size", "Updated Style", "Group", "Price Group", 
+                    "Pocket Area", "Rectangle Phone Area", "Rectangle Phone CX", 
+                    "Rectangle Phone CY", "Rectangle Phone Width", 
+                    "Rectangle Phone Height", "Rectangle Phone Angle"),
+      align = c("l", rep("c", 6), rep("r", 19))
+)
+Make sure to replace the NA values in the data tibble with actual data from your dataset. This code will generate a nicely formatted table with the specified column names and alignment. Adjust the column names and alignment as needed to match your data.
+
+User
+print a table with only the 5 first variables
+ChatGPT
+To print a table with only the first five variables from your dataset, you can select those variables and then use the kable() function to print them. Here's how you can do it:
+
+r
+Copy code
+library(knitr)
+
+# Select the first five variables from your dataset
+data_subset <- select(pocket_area_data, 1:5)
+
+# Print the table using kable
+kable(data_subset, 
+      caption = "Subset of Data with First Five Variables", 
+      format = "markdown",
+      col.names = c("Brand", "Style", "Men/Women", "Name", "Fabric"),
+      align = c("l", rep("c", 4))
+)
+This code will create a nicely formatted table with the first five variables from your dataset, with the specified column names and alignment. Adjust the column names and alignment as needed to match your data.
+
+
+
+
+
+
 
 
