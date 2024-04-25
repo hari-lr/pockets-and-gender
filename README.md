@@ -1,4 +1,4 @@
-# Jean Pockets and Gender
+# Exploring Pocket Size and Jean Prices for Men and Women
 
 ## Overview
 
